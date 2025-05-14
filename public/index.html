@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Screen Share App</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1 id="title">Screen Share</h1>
+
+  <div id="controls">
+    <div id="broadcaster">
+      <h2>Broadcaster</h2>
+      <br />
+       <label>
+        <input type="checkbox" id="is-public" checked  />
+        Public
+        </label>
+        <br />
+        <button onclick="startBroadcast()">Start Broadcasting</button>
+    </div>
+
+    <div id="watcher">
+      <h2>Watcher</h2>
+      <input id="watch-code" placeholder="Enter Code to Watch" maxlength="6" />
+      <br />
+      <button onclick="joinStream()">Join stream</button>
+      <button onclick="joinRandom()">Join random stream</button>
+    </div>
+  </div>
+
+  <div id="video-container">
+    <div id="video-overlay">
+      <span id="room-code-display"></span>
+    </div>
+    <video id="video" autoplay playsinline controls></video>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
