@@ -1,5 +1,7 @@
 const socket = io();
 const video = document.getElementById("video");
+const codeInputField = document.getElementById('watch-code');
+const joinButton = document.getElementById('join-button');
 
 let peerConnections = {};
 const config = { iceServers: [{ urls: "stun:stun.l.google.com:19302" }] };
@@ -60,7 +62,7 @@ async function startBroadcast() {
 
   // Watcher connects and waits for offer
 function joinStream() {
-	const code = document.getElementById("watch-code").value;
+	const code = codeInputField.value;
 	socket.emit("watcher", code);
 
 	socket.once("roomJoined", (code) => {
@@ -131,4 +133,12 @@ document.getElementById('room-code-display').addEventListener('click', () => {
       displayEl.style.pointerEvents = 'auto'; // Re-enable click
     }, 1000);
   });
+});
+
+codeInputField.addEventListener('input', function() {
+  if (codeInputField.value.length === 6) {
+    joinButton.disabled = false;
+  } else {
+    joinButton.disabled = true; 
+  }
 });

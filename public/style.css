@@ -17,11 +17,14 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100%;
+  padding: 20px;
 }
 
 h1 {
   color: #90caf9;
   margin-bottom: 20px;
+  font-size: 2rem;
 }
 
 input, button {
@@ -52,28 +55,37 @@ button:hover {
 
 #controls {
   display: flex;
-  gap: 40px;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  margin-bottom: 20px;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 40px;
 }
 
 #broadcaster, #watcher {
   background: #1e1e1e;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
   border-radius: 10px;
   padding: 20px;
-  width: 300px;
+  width: 320px;
+  text-align: center; /* ⬅️ Center text inside */
 }
 
-#video-container {
-  display: none;
-  width: 100vw;
-  height: 100vh;
+#watcher .input-group {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center; /* Center the input and button */
+  width: 100%;
+}
+
+#watcher input {
+  flex: 1;
+  width: 180px; /* Set a fixed width for the input */
+  margin-right: 2px;
+}
+
+#watcher button {
+  width: 120px; /* Adjust width of the button */
 }
 
 #video-container {
@@ -87,7 +99,7 @@ button:hover {
 
 #video-overlay {
   position: absolute;
-  top: 20px;
+  top: 5px;
   left: 50%;
   transform: translateX(-50%);
   background: rgba(30, 136, 229, 0.9);
@@ -109,4 +121,65 @@ video {
 
 #room-code-display {
   cursor: pointer;
+}
+
+.switch-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;   /* center horizontally */
+  gap: 10px;                 /* controlled spacing */
+  font-size: 1rem;
+  margin: 10px 0;
+}
+
+.switch-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+.switch-wrapper input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #777;
+  transition: 0.4s;
+  border-radius: 24px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+/* When checked */
+.switch-wrapper input:checked + .slider {
+  background-color: #1e88e5;
+}
+
+.switch-wrapper input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+#join-button:disabled {
+  background-color: #555;  /* Darker background */
+  cursor: not-allowed;     /* Change cursor to show it's disabled */
+  opacity: 0.5;            /* Make it appear faded */
 }
