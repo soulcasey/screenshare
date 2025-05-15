@@ -36,8 +36,10 @@
 	</div>
 
 	<div id="video-container">
-		<button id="room-code-display" onclick="copyCode()"></button>
-		<video id="video" autoplay playsinline controls></video>
+		<div id="video-wrapper">
+			<button id="room-code-display" onclick="copyCode()"></button>
+			<video id="video" autoplay playsinline controls></video>
+		</div>
 	</div>
 
 	<script src="/socket.io/socket.io.js"></script>
