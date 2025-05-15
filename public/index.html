@@ -5,6 +5,7 @@
 	<meta charset="UTF-8" />
 	<title>ScreenShare</title>
 	<link rel="stylesheet" href="style.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -37,7 +38,10 @@
 
 	<div id="video-container">
 		<div id="video-wrapper">
-			<button id="room-code-display" onclick="copyCode()"></button>
+			<div id="code-copy-wrapper">
+				<button id="room-code-display" onclick="copyCode()"></button>
+				<i class="fas fa-copy" id="copy-icon" onclick="copyCode()"></i>
+			</div>
 			<video id="video" autoplay playsinline controls></video>
 		</div>
 	</div>

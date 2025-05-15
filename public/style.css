@@ -185,6 +185,29 @@ video {
 }
 
 #room-code-display {
+	width: 90px;
 	margin-bottom: 15px;
 	cursor: pointer;
+}
+
+#code-copy-wrapper {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#copy-icon {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	left: calc(50% + 60px);
+	font-size: 25px;
+	color: #90caf9;
+	cursor: pointer;
+	transition: color 0.2s;
+}
+
+#copy-icon:hover {
+	color: #ffffff;
 }
