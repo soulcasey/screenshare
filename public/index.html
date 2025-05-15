@@ -22,7 +22,7 @@
 					<span class="slider"></span>
 				</div>
 			</label>
-			<button onclick="startBroadcast()">Start Sharing</button>
+			<button onclick="startBroadcast()">Start&nbsp;Sharing</button>
 		</div>
 
 		<div id="watcher">
@@ -32,15 +32,17 @@
 				<input id="watch-code" placeholder="Enter 6 Digit Code" maxlength="6" />
 				<button id="join-button" onclick="joinStream()" disabled>Join</button>
 			</div>
-			<button onclick="joinRandom()">Join Random</button>
+			<button onclick="joinRandom()">Join&nbsp;Random</button>
 		</div>
 	</div>
 
 	<div id="video-container">
 		<div id="video-wrapper">
-			<div id="code-copy-wrapper">
-				<button id="room-code-display" onclick="copyCode()"></button>
+			<div id="room-code-wrapper">
 				<i class="fas fa-copy" id="copy-icon" onclick="copyCode()"></i>
+				<button id="room-code-display" onclick="copyCode()"></button>
+				<i class="fas fa-eye" id="eye-icon"></i>
+				<div id = "watch-count"></div>
 			</div>
 			<video id="video" autoplay playsinline controls></video>
 		</div>

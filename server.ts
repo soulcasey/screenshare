@@ -56,7 +56,7 @@ io.on('connection', (socket: Socket) => {
             room.watchers.push(socket.id);
             userRoom[socket.id] = code;
             io.to(socket.id).emit("roomJoined", code);
-            io.to(room.broadcasterId).emit('watcher', socket.id); // Notify broadcaster
+            io.to(code).emit('newWatcher', socket.id, room.watchers.length); // Notify broadcaster
             console.log(`Watcher ${socket.id} joined the room with code: ${code}`);
         }
         else {
@@ -81,7 +81,7 @@ io.on('connection', (socket: Socket) => {
         userRoom[socket.id] = code;
 
         io.to(socket.id).emit("roomJoined", code);
-        io.to(room.broadcasterId).emit('watcher', socket.id);
+        io.to(code).emit('newWatcher', socket.id, room.watchers.length); 
 
         console.log(`Watcher ${socket.id} joined the public room with code: ${code}`);
     });
@@ -103,6 +103,8 @@ io.on('connection', (socket: Socket) => {
     socket.on('disconnect', () => {
         console.log(`Client disconnected: ${socket.id}`);
 
+
+
         const code = userRoom[socket.id];
         // Return incase user in invalid room
         if (!code) return;
@@ -115,13 +117,12 @@ io.on('connection', (socket: Socket) => {
             // Broadcaster disconnected, clean up room
             delete rooms[code];
             console.log(`Room with code ${code} cleaned up due to broadcaster disconnect.`);
-
-            // Need to annoucement that room has closed
+            io.to(code).emit('error', 'Sharing Stopped!');
         }
         else {
             // Remove watcher from room's watcher list
             room.watchers = room.watchers.filter(id => id !== socket.id);
-            // io.to(room.broadcasterId).emit('disconnectPeer', socket.id); // Let broadcaster know
+            io.to(code).emit('disconnectWatcher', socket.id, room.watchers.length); // Let broadcaster know
             console.log(`Watcher ${socket.id} disconnected from room ${code}`);
         }
 

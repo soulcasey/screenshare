@@ -24,10 +24,12 @@ async function startBroadcast() {
 
 	socket.once("roomCreated", (code) => {
 		video.srcObject = stream;
+		updateWatchCount(0);
 
-		socket.on("watcher", (id) => {
+		socket.on("newWatcher", (id, count) => {
 			const peerConnection = new RTCPeerConnection(config);
 			peerConnections[id] = peerConnection;
+			updateWatchCount(count);
 
 			stream.getTracks().forEach(track => peerConnection.addTrack(track, stream));
 
@@ -57,11 +59,13 @@ async function startBroadcast() {
 			peerConnections[id].addIceCandidate(new RTCIceCandidate(candidate));
 		});
 
-		socket.on("disconnectPeer", id => {
+		socket.on("disconnectWatcher", (id, count) => {
 			if (peerConnections[id]) {
 				peerConnections[id].close();
 				delete peerConnections[id];
 			}
+			
+			updateWatchCount(count);
 		});
 
 		hideControlsAndShowVideo(code);
@@ -114,6 +118,14 @@ function viewStream(code) {
 		peerConnection.addIceCandidate(new RTCIceCandidate(candidate));
 	});
 
+	socket.on("newWatcher", (id, count) => {
+		updateWatchCount(count);
+	});
+
+	socket.on("disconnectWatcher", (id, count) => {
+		updateWatchCount(count);
+	});
+
 	hideControlsAndShowVideo(code);
 }
 
@@ -139,6 +151,10 @@ function copyCode() {
 			displayEl.style.pointerEvents = 'auto';
 		}, 1000);
 	});
+}
+
+function updateWatchCount(count) {
+	document.getElementById('watch-count').textContent = `${count}`;
 }
 
 // Enable Join Button Only If Code is 6 Digits

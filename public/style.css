@@ -31,7 +31,7 @@ input,
 button {
 	padding: 10px;
 	margin: 10px;
-	font-size: 1rem;
+	font-size: 1.1rem;
 	border-radius: 8px;
 	border: none;
 	outline: none;
@@ -87,11 +87,6 @@ button:hover {
 	width: 180px;
 	/* Set a fixed width for the input */
 	margin-right: 2px;
-}
-
-#watcher button {
-	width: 120px;
-	/* Adjust width of the button */
 }
 
 #video-container {
@@ -185,29 +180,43 @@ video {
 }
 
 #room-code-display {
-	width: 90px;
+	width: 100px;
 	margin-bottom: 15px;
 	cursor: pointer;
 }
 
-#code-copy-wrapper {
+#room-code-wrapper {
 	position: relative;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 
-#copy-icon {
+#copy-icon, #eye-icon, #watch-count {
 	position: absolute;
-	top: 50%;
+	top: 48%;
 	transform: translateY(-50%);
-	left: calc(50% + 60px);
-	font-size: 25px;
+	font-size: 1.8rem;
 	color: #90caf9;
-	cursor: pointer;
-	transition: color 0.2s;
 }
 
 #copy-icon:hover {
 	color: #ffffff;
+}
+
+#copy-icon {
+	left: calc(50% - 100px);
+	cursor: pointer;
+	transition: color 0.2s;
+}
+
+#eye-icon {
+	left: calc(50% + 70px);
+}
+
+#watch-count {
+	top: 45%;
+	font-size: 1.3rem;
+	left: calc(50% + 110px);
+	text-align: left;
 }
