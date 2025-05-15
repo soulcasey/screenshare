@@ -1,46 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<title>ScreenShare</title>
-		<link rel="stylesheet" href="style.css" />
-	</head>
-	<body>
-		<h1 id="title">Screen Share</h1>
 
-		<div id="controls">
-			<div id="broadcaster">
-				<h2>Broadcaster</h2>
-				<br/>
-				<label class="switch-label">
-					Public
-					<div class="switch-wrapper">
-						<input type="checkbox" id="is-public" checked/>
-						<span class="slider"></span>
-					</div>
-				</label>
-				<button onclick="startBroadcast()">Start Sharing</button>
-			</div>
+<head>
+	<meta charset="UTF-8" />
+	<title>ScreenShare</title>
+	<link rel="stylesheet" href="style.css" />
+</head>
 
-			<div id="watcher">
-				<h2>Watcher</h2>
-				<br/>
-				<div class="input-group">
-					<input id="watch-code" placeholder="Enter 6 Digit Code" maxlength="6" />
-					<button id="join-button" onclick="joinStream()" disabled>Join</button>
+<body>
+	<h1 id="title">Screen Share</h1>
+
+	<div id="controls">
+		<div id="broadcaster">
+			<h2>Broadcaster</h2>
+			<br />
+			<label class="switch-label">
+				Public
+				<div class="switch-wrapper">
+					<input type="checkbox" id="is-public" checked />
+					<span class="slider"></span>
 				</div>
-				<button onclick="joinRandom()">Join Random</button>
-			</div>
+			</label>
+			<button onclick="startBroadcast()">Start Sharing</button>
 		</div>
 
-		<div id="video-container">
-			<div id="video-overlay">
-				<span id="room-code-display"></span>
+		<div id="watcher">
+			<h2>Watcher</h2>
+			<br />
+			<div class="input-group">
+				<input id="watch-code" placeholder="Enter 6 Digit Code" maxlength="6" />
+				<button id="join-button" onclick="joinStream()" disabled>Join</button>
 			</div>
-			<video id="video" autoplay playsinline controls></video>
+			<button onclick="joinRandom()">Join Random</button>
 		</div>
+	</div>
 
-		<script src="/socket.io/socket.io.js"></script>
-		<script src="script.js"></script>
-	</body>
+	<div id="video-container">
+		<div id="video-overlay">
+			<span id="room-code-display"></span>
+		</div>
+		<video id="video" autoplay playsinline controls></video>
+	</div>
+
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="script.js"></script>
+</body>
+
 </html>

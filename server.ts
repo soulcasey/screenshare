@@ -41,7 +41,7 @@ io.on('connection', (socket: Socket) => {
         userRoom[socket.id] = code;
         socket.join(code);
         console.log(`Broadcaster started with code: ${code}`);
-        
+
         // Send the room code to the broadcaster
         socket.emit('roomCreated', code);
     });
@@ -85,7 +85,7 @@ io.on('connection', (socket: Socket) => {
 
         console.log(`Watcher ${socket.id} joined the public room with code: ${code}`);
     });
-    
+
     // Relay ICE candidates and SDP between peers
     socket.on('offer', (id: string, message: RTCSessionDescriptionInit) => {
         io.to(id).emit('offer', socket.id, message);
@@ -131,7 +131,7 @@ io.on('connection', (socket: Socket) => {
 
 
 // Generate a unique 6-character alphanumeric code
-function generateUniqueCode() : string {
+function generateUniqueCode(): string {
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     while (true) {
         let code = '';
