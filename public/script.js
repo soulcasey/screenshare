@@ -9,6 +9,9 @@ const config = {
 	iceTransportPolicy: "all"
 };
 
+// block video pause
+document.querySelector('video').addEventListener('click', (e) => e.preventDefault() )
+
 // Broadcast mode
 async function startBroadcast() {
 	const stream = await navigator.mediaDevices.getDisplayMedia({
