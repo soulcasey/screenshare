@@ -145,3 +145,7 @@ function copyCode() {
 codeInputField.addEventListener('input', () => {
 	joinButton.disabled = codeInputField.value.length !== 6;
 });
+
+socket.on("error", (message) => {
+	alert(message);
+});
