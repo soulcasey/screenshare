@@ -104,20 +104,6 @@ button:hover {
 	align-items: center;
 }
 
-#video-overlay {
-	position: absolute;
-	top: 5px;
-	left: 50%;
-	transform: translateX(-50%);
-	background: rgba(30, 136, 229, 0.9);
-	color: white;
-	padding: 10px 20px;
-	border-radius: 12px;
-	font-size: 1.1rem;
-	font-weight: bold;
-	z-index: 2;
-}
-
 video {
 	max-width: 80vw;
 	max-height: 80vh;
@@ -127,6 +113,10 @@ video {
 }
 
 #room-code-display {
+	position: absolute;
+	top: 5px;
+	color: white;
+	z-index: 2;
 	cursor: pointer;
 }
 

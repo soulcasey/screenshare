@@ -126,8 +126,7 @@ function hideControlsAndShowVideo(code) {
 	document.getElementById('room-code-display').textContent = `${code}`;
 }
 
-// Clipboard copy
-document.getElementById('room-code-display').addEventListener('click', () => {
+function copyCode() {
 	const displayEl = document.getElementById('room-code-display');
 	const text = displayEl.textContent.trim();
 
@@ -140,7 +139,7 @@ document.getElementById('room-code-display').addEventListener('click', () => {
 			displayEl.style.pointerEvents = 'auto';
 		}, 1000);
 	});
-});
+}
 
 // Enable Join Button Only If Code is 6 Digits
 codeInputField.addEventListener('input', () => {
