@@ -9,6 +9,8 @@ const config = {
 	iceTransportPolicy: "all"
 };
 
+let roomCode = "";
+
 // block video pause
 document.querySelector('video').addEventListener('click', (e) => e.preventDefault() )
 
@@ -139,6 +141,7 @@ function hideControlsAndShowVideo(code) {
 	document.getElementById('video-container').style.display = 'flex';
 	document.getElementById('video').style.display = 'block';
 	document.getElementById('room-code-display').textContent = `${code}`;
+	roomCode = code;
 }
 
 function copyCode() {
@@ -147,10 +150,9 @@ function copyCode() {
 
 	displayEl.style.pointerEvents = 'none';
 	navigator.clipboard.writeText(text).then(() => {
-		const originalText = displayEl.textContent;
 		displayEl.textContent = 'Copied!';
 		setTimeout(() => {
-			displayEl.textContent = originalText;
+			displayEl.textContent = roomCode;
 			displayEl.style.pointerEvents = 'auto';
 		}, 1000);
 	});
